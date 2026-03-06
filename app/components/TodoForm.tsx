@@ -83,7 +83,7 @@ export default function TodoForm({ todo, availableTags = [], onClose }: Props) {
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6">
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6 text-gray-900">
         <h2 className="text-lg font-semibold mb-4">
           {todo ? 'Edit Todo' : 'New Todo'}
         </h2>
@@ -97,7 +97,7 @@ export default function TodoForm({ todo, availableTags = [], onClose }: Props) {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="What needs to be done?"
             />
             {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
@@ -111,7 +111,7 @@ export default function TodoForm({ todo, availableTags = [], onClose }: Props) {
               id="priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value as Priority)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="HIGH">High</option>
               <option value="MEDIUM">Medium</option>
@@ -128,7 +128,7 @@ export default function TodoForm({ todo, availableTags = [], onClose }: Props) {
               type="date"
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -150,6 +150,18 @@ export default function TodoForm({ todo, availableTags = [], onClose }: Props) {
                   {tag.name}
                 </button>
               ))}
+              {selectedTags
+                .filter((name) => !availableTags.some((t) => t.name === name))
+                .map((name) => (
+                  <button
+                    key={name}
+                    type="button"
+                    onClick={() => toggleTag(name)}
+                    className="text-xs px-2 py-1 rounded-full border text-white border-transparent bg-blue-500"
+                  >
+                    {name} ×
+                  </button>
+                ))}
             </div>
             <div className="flex gap-2">
               <input
@@ -157,7 +169,7 @@ export default function TodoForm({ todo, availableTags = [], onClose }: Props) {
                 onChange={(e) => setNewTag(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addNewTag())}
                 placeholder="New tag..."
-                className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm"
+                className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 bg-white"
               />
               <button
                 type="button"
