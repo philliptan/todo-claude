@@ -80,6 +80,7 @@ export default function TodoItem({ todo, onEdit }: Props) {
           onClick={() => onEdit(todo)}
           className="text-gray-400 hover:text-blue-500 p-1 rounded"
           aria-label="Edit"
+          title="Edit"
         >
           ✏️
         </button>
@@ -87,6 +88,7 @@ export default function TodoItem({ todo, onEdit }: Props) {
           onClick={() => deleteTodo(todo.id)}
           className="text-gray-400 hover:text-red-500 p-1 rounded"
           aria-label="Delete"
+          title="Delete"
         >
           🗑️
         </button>
