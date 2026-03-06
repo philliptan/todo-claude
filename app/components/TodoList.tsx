@@ -49,7 +49,7 @@ export default function TodoList({ todos, tags }: Props) {
         </p>
         <button
           onClick={() => setShowForm(true)}
-          className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700"
+          className="px-4 py-2 bg-orange-500 text-white text-sm rounded-lg hover:bg-orange-600"
         >
           + Add Todo
         </button>
